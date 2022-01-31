@@ -1,0 +1,15 @@
+{
+  "name": "bas-captchacustom",
+  "version": "1.0.0",
+  "description": "module for the browser automation studio",
+  "main": "CaptchaCustom_FunCaptcha_code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "liteCarma <litecarma@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.28.0"
+  }
+}
