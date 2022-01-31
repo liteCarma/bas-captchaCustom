@@ -1,5 +1,24 @@
 <div class="container-fluid">
-	<%= _.template($('#input_constructor').html())({id:"service", description:tr("Service"), default_selector: "string", variants: ["rucaptcha<br/><span style='color:gray;font-size:small'>RuCaptcha - rucaptcha.com</span>","2captcha<br/><span style='color:gray;font-size:small'>2Captcha - 2captcha.com</span>","antigate<br/><span style='color:gray;font-size:small'>Anti-Captcha - anti-captcha.com</span>","captchaguru<br/><span style='color:gray;font-size:small'>Captcha.Guru - captcha.guru</span>","capcloud<br/><span style='color:gray;font-size:small'>Capmonster.Cloud - capmonster.cloud</span>","capmonster<br/><span style='color:gray;font-size:small'>Capmonster - zennolab.com/products/capmonster</span>","xevil<br/><span style='color:gray;font-size:small'>XEvil - xevil.net</span>"], disable_int:true, value_string: "rucaptcha", help: {description: tr("Captcha solution service")} }) %>
+	<%= _.template($('#input_constructor').html())({
+	  id: "service",
+	  description: tr("Service"),
+	  default_selector: "string",
+	  variants: [
+      "rucaptcha<br/><span style='color:gray;font-size:small'>RuCaptcha - rucaptcha.com</span>",
+      "2captcha<br/><span style='color:gray;font-size:small'>2Captcha - 2captcha.com</span>",
+      "antigate<br/><span style='color:gray;font-size:small'>Anti-Captcha - anti-captcha.com</span>",
+      "anycaptcha<br/><span style='color:gray;font-size:small'>Anycaptcha - anycaptcha.com</span>",
+      "captchaguru<br/><span style='color:gray;font-size:small'>Captcha.Guru - captcha.guru</span>",
+      "capcloud<br/><span style='color:gray;font-size:small'>Capmonster.Cloud - capmonster.cloud</span>",
+      "capmonster<br/><span style='color:gray;font-size:small'>Capmonster - zennolab.com/products/capmonster</span>",
+      "xevil<br/><span style='color:gray;font-size:small'>XEvil - xevil.net</span>"
+    ],
+    disable_int: true,
+	  value_string: "rucaptcha",
+	  help: {
+	    description: tr("Captcha solution service")
+	  }
+	})%>
 	<%= _.template($('#input_constructor').html())({id:"serviceKey", description:tr("Service key"), default_selector: "string", disable_int:true, value_string: "", help: {description: tr("Captcha solution service key")} }) %>
 	<%= _.template($('#input_constructor').html())({id:"serverUrl", description:tr("Server URL"), default_selector: "string", disable_int:true, value_string: "", help: {description: tr("Server URL"), examples:[{code:"http://127.0.0.3:8083"}]} }) %>
 	<div style="margin-left: 20px;">
@@ -27,7 +46,7 @@
 		};
 		
 		function set_visible_server(){
-			if($('#service').val()=="capmonster" || $('#service').val()=="xevil" || ["rucaptcha", "2captcha", "antigate", "captchaguru", "capcloud", "capmonster", "xevil"].indexOf($('#service').val()) < 0){
+			if($('#service').val()=="capmonster" || $('#service').val()=="xevil" || ["rucaptcha", "2captcha", "antigate", "anycaptcha", "captchaguru", "capcloud", "capmonster", "xevil"].indexOf($('#service').val()) < 0){
 				document.querySelectorAll("[data-preserve-id=serverUrl]")[0].style = "display:block";
 			}else{
 				document.querySelectorAll("[data-preserve-id=serverUrl]")[0].style = "display:none";

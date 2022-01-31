@@ -71,6 +71,14 @@ function CaptchaCustom_SetService(){
 			_CAPTCHA_SOFTID = 878;
 			_CAPTCHA_SOFTID_TITLE = "softId";
 			break;
+		case "anycaptcha":
+			_CAPTCHA_SERVICE_URL = "https://api.anycaptcha.com";
+			_CAPTCHA_SERVICE_NAME = "Anycaptcha";
+			_CAPTCHA_API_VERSION = "antigate";
+			_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3","hCaptcha","FunCaptcha"];
+			_CAPTCHA_SOFTID = 6630;
+			_CAPTCHA_SOFTID_TITLE = "softId";
+			break;
 		case "captchaguru":
 			_CAPTCHA_SERVICE_URL = "https://api.captcha.guru";
 			_CAPTCHA_SERVICE_NAME = "Captcha.Guru";
@@ -327,6 +335,10 @@ function CaptchaCustom_SolveCaptcha(){
 				if(_CAPTCHA_COOKIES){
 					add_data("cookies", _CAPTCHA_COOKIES);
 				};
+
+        if (_CAPTCHA_IS_ENTERPRISE && _CAPTCHA_ENTERPRISE_ACTION !== '') {
+          add_data("action", _CAPTCHA_ENTERPRISE_ACTION);
+        }
 				break;
 			case "RecaptchaV3":
 				add_data("method", "userrecaptcha");
@@ -476,6 +488,7 @@ function CaptchaCustom_RecaptchaV2(){
 	_CAPTCHA_SITE_URL = _function_argument("siteURL");
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
 	_CAPTCHA_IS_ENTERPRISE = eval(_function_argument("isEnterprise"));
+  _CAPTCHA_ENTERPRISE_ACTION = _function_argument("enterpriseAction");
 	_CAPTCHA_DATA_S = _function_argument("dataS");
 	_CAPTCHA_INVISIBLE = eval(_function_argument("isInvisible"));
 	_CAPTCHA_COOKIES = _function_argument("cookies");
