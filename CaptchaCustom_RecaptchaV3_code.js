@@ -1,3 +1,4 @@
+ /*Dat:eyJzIjoiZ290In0*/
 _call_function(CaptchaCustom_RecaptchaV3, {
 	"service": (<%= service %>),
    "serviceKey": (<%= serviceKey %>),

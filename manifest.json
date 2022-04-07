@@ -1,229 +1,300 @@
 {
   "actions": [
-      {
-          "code": [
-              {
-                  "file": "CaptchaCustom_GetBalance_code.js",
-                  "name": "CaptchaCustom_GetBalance_code"
-              }
-          ],
-          "description": {
-              "en": "Get balance",
-              "ru": "Получить баланс"
-          },
-          "interface": "CaptchaCustom_GetBalance_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_GetBalance",
-          "select": "CaptchaCustom_GetBalance_select.js",
-          "template": "{{service}} -> {{Save}}"
+    {
+      "code": [{
+        "file": "CaptchaCustom_GetBalance_code.js",
+        "name": "CaptchaCustom_GetBalance_code"
+      }],
+      "description": {
+        "en": "Get balance",
+        "ru": "Получить баланс"
       },
-  {
-          "code": [
-              {
-                  "file": "CaptchaCustom_Image_code.js",
-                  "name": "CaptchaCustom_Image_code"
-              }
-          ],
-          "description": {
-              "en": "Solve Captcha",
-              "ru": "Решить Капчу"
-          },
-          "interface": "CaptchaCustom_Image_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_Image",
-          "select": "CaptchaCustom_Image_select.js",
-          "template": "{{service}} -> {{Save}}"
+      "interface": "CaptchaCustom_GetBalance_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_GetBalance",
+      "select": "CaptchaCustom_GetBalance_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_Image_code.js",
+        "name": "CaptchaCustom_Image_code"
+      }],
+      "description": {
+        "en": "Solve Captcha",
+        "ru": "Решить Капчу"
       },
-  {
-          "code": [
-              {
-                  "file": "CaptchaCustom_RecaptchaV2_code.js",
-                  "name": "CaptchaCustom_RecaptchaV2_code"
-              }
-          ],
-          "description": {
-              "en": "Solve RecaptchaV2",
-              "ru": "Решить RecaptchaV2"
-          },
-          "interface": "CaptchaCustom_RecaptchaV2_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_RecaptchaV2",
-          "select": "CaptchaCustom_RecaptchaV2_select.js",
-          "template": "{{service}} -> {{Save}}"
+      "interface": "CaptchaCustom_Image_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_Image",
+      "select": "CaptchaCustom_Image_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_RecaptchaV2_code.js",
+        "name": "CaptchaCustom_RecaptchaV2_code"
+      }],
+      "description": {
+        "en": "Solve RecaptchaV2",
+        "ru": "Решить RecaptchaV2"
       },
-  {
-          "code": [
-              {
-                  "file": "CaptchaCustom_RecaptchaV3_code.js",
-                  "name": "CaptchaCustom_RecaptchaV3_code"
-              }
-          ],
-          "description": {
-              "en": "Solve RecaptchaV3",
-              "ru": "Решить RecaptchaV3"
-          },
-          "interface": "CaptchaCustom_RecaptchaV3_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_RecaptchaV3",
-          "select": "CaptchaCustom_RecaptchaV3_select.js",
-          "template": "{{service}} -> {{Save}}"
+      "interface": "CaptchaCustom_RecaptchaV2_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_RecaptchaV2",
+      "select": "CaptchaCustom_RecaptchaV2_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_RecaptchaV3_code.js",
+        "name": "CaptchaCustom_RecaptchaV3_code"
+      }],
+      "description": {
+        "en": "Solve RecaptchaV3",
+        "ru": "Решить RecaptchaV3"
       },
-  {
-          "code": [
-              {
-                  "file": "CaptchaCustom_hCaptcha_code.js",
-                  "name": "CaptchaCustom_hCaptcha_code"
-              }
-          ],
-          "description": {
-              "en": "Solve hCaptcha",
-              "ru": "Решить hCaptcha"
-          },
-          "interface": "CaptchaCustom_hCaptcha_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_hCaptcha",
-          "select": "CaptchaCustom_hCaptcha_select.js",
-          "template": "{{service}} -> {{Save}}"
+      "interface": "CaptchaCustom_RecaptchaV3_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_RecaptchaV3",
+      "select": "CaptchaCustom_RecaptchaV3_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_hCaptcha_code.js",
+        "name": "CaptchaCustom_hCaptcha_code"
+      }],
+      "description": {
+        "en": "Solve hCaptcha",
+        "ru": "Решить hCaptcha"
       },
-  {
-          "code": [
-              {
-                  "file": "CaptchaCustom_FunCaptcha_code.js",
-                  "name": "CaptchaCustom_FunCaptcha_code"
-              }
-          ],
-          "description": {
-              "en": "Solve FunCaptcha",
-              "ru": "Решить FunCaptcha"
-          },
-          "interface": "CaptchaCustom_FunCaptcha_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_FunCaptcha",
-          "select": "CaptchaCustom_FunCaptcha_select.js",
-          "template": "{{service}} -> {{Save}}"
+      "interface": "CaptchaCustom_hCaptcha_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_hCaptcha",
+      "select": "CaptchaCustom_hCaptcha_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_FunCaptcha_code.js",
+        "name": "CaptchaCustom_FunCaptcha_code"
+      }],
+      "description": {
+        "en": "Solve FunCaptcha",
+        "ru": "Решить FunCaptcha"
       },
-      {
-          "code": [
-              {
-                  "file": "CaptchaCustom_ReportGood_code.js",
-                  "name": "CaptchaCustom_ReportGood_code"
-              }
-          ],
-          "description": {
-              "en": "Recaptcha solved correctly",
-              "ru": "Recaptcha решена верно"
-          },
-          "interface": "CaptchaCustom_ReportGood_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_ReportGood",
-          "select": "CaptchaCustom_ReportGood_select.js",
-          "template": ""
+      "interface": "CaptchaCustom_FunCaptcha_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_FunCaptcha",
+      "select": "CaptchaCustom_FunCaptcha_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_ReportGood_code.js",
+        "name": "CaptchaCustom_ReportGood_code"
+      }],
+      "description": {
+        "en": "Recaptcha solved correctly",
+        "ru": "Recaptcha решена верно"
       },
-      {
-          "code": [
-              {
-                  "file": "CaptchaCustom_ReportBad_code.js",
-                  "name": "CaptchaCustom_ReportBad_code"
-              }
-          ],
-          "description": {
-              "en": "Recaptcha solved incorrectly",
-              "ru": "Recaptcha решена неверно"
-          },
-          "interface": "CaptchaCustom_ReportBad_interface.js",
-          "is_element": false,
-          "name": "CaptchaCustom_ReportBad",
-          "select": "CaptchaCustom_ReportBad_select.js",
-          "template": ""
-      }
+      "interface": "CaptchaCustom_ReportGood_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_ReportGood",
+      "select": "CaptchaCustom_ReportGood_select.js",
+      "template": ""
+    },
+    {
+      "code": [{
+        "file": "CaptchaCustom_ReportBad_code.js",
+        "name": "CaptchaCustom_ReportBad_code"
+      }],
+      "description": {
+        "en": "Recaptcha solved incorrectly",
+        "ru": "Recaptcha решена неверно"
+      },
+      "interface": "CaptchaCustom_ReportBad_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustom_ReportBad",
+      "select": "CaptchaCustom_ReportBad_select.js",
+      "template": ""
+    }
   ],
   "api_version": 1,
   "autogenerated_functions": [
-  "CaptchaCustom_GetBalance",
-  "CaptchaCustom_Image",
-  "CaptchaCustom_RecaptchaV2",
-      "CaptchaCustom_RecaptchaV3",
-  "CaptchaCustom_hCaptcha",
-  "CaptchaCustom_FunCaptcha",
-      "CaptchaCustom_ReportGood",
-      "CaptchaCustom_ReportBad"
+    "CaptchaCustom_GetBalance",
+    "CaptchaCustom_Image",
+    "CaptchaCustom_RecaptchaV2",
+    "CaptchaCustom_RecaptchaV3",
+    "CaptchaCustom_hCaptcha",
+    "CaptchaCustom_FunCaptcha",
+    "CaptchaCustom_ReportGood",
+    "CaptchaCustom_ReportBad"
   ],
-  "browser": [
-  ],
-  "depends": [
-  ],
+  "browser": [],
+  "depends": ["got"],
   "description": "Custom module for solving various captcha",
   "description_small": {
-      "en": "CaptchaCustom",
-      "ru": "CaptchaCustom"
+    "en": "CaptchaCustom mod UserTrue",
+    "ru": "CaptchaCustom mod UserTrue"
   },
-  "developer_email": "sasha9817@mail.ru",
-  "developer_name": "GhostZ",
-  "developer_site": "https://t.me/GhostZed",
-  "embeddeddata": [
-  ],
+  "developer_email": "litecarma@gmail.com",
+  "developer_name": "usertrue(GhostZ)",
+  "developer_site": "https://t.me/usertrue",
+  "embeddeddata": [],
   "engine": [
-      "engine.js"
+    "engine.js"
   ],
   "icon": "icon.png",
   "info": {
-      "en": "Custom module for solving various captcha",
-      "ru": "Кастомный модуль для решения различных капч"
+    "en": "Custom module for solving various captcha",
+    "ru": "Кастомный модуль для решения различных капч"
   },
   "is_autogenerated": true,
-  "languages": [
-  ],
+  "languages": [],
   "localize": {
-  "is empty": {"ru":"пуст"},
-  "Balance": {"ru":"Баланс"},
-  "Service": {"ru":"Сервис"},
-  "Result": {"ru":"Результат"},
-  "Soft Id": {"ru":"ID софта"},
-  "Site URL": {"ru":"URL сайта"},
-  "Site Key": {"ru":"Ключ сайта"},
-  "Server URL": {"ru":"URL сервера"},
-  "Service key": {"ru":"Ключ сервиса"},
-  "Not use js": {"ru":"Не использовать js"},
-  "Action name": {"ru":"Название действия"},
-  "Solve hCaptcha": {"ru":"Решить hCaptcha"},
-  "Minimum rating": {"ru":"Минимальный рейтинг"},
-  "Solve FunCaptcha": {"ru":"Решить FunCaptcha"},
-  "Solve Recaptcha V2": {"ru":"Решить Recaptcha V2"},
-  "Solve Recaptcha V3": {"ru":"Решить Recaptcha V3"},
-  "Replace server URL": {"ru":"Заменять URL сервера"},
-  "Captcha picture data": {"ru":"Данные изображения"},
-  "Server URL replacement": {"ru":"Замена URL сервера"},
-  "Is Enterprise Captcha": {"ru":"Это Enterprise капча"},
-  "Is Invisible Captcha": {"ru":"Это невидимая капча"},
-  "Captcha solution service": {"ru":"Сервис решения капчи"},
-  "Result solutions captcha": {"ru":"Результат решения капчи"},
-  "Captcha solution service key": {"ru":"Ключ сервиса решения капчи"},
-  "surl (Optional parameter)": {"ru":"surl (Необязательный параметр)"},
-  "data (Optional parameter)": {"ru":"data (Необязательный параметр)"},
-  "Send proxy to solver service": {"ru":"Отправлять прокси на сервис"},
-  "It is the Enterprise Captcha": {"ru":"Является ли капча Enterprise"},
-  "It is the Invisible Captcha": {"ru":"Является ли капча невидимой"},
-  "Captcha key for the specified site": {"ru":"Ключ капчи для указанного сайта"},
-  "Delay between receiving results": {"ru":"Задержка между получениями результата"},
-  "Delay before the first result": {"ru":"Задержка перед первым получением результата"},
-  "Get the balance of a captcha solution service": {"ru":"Получить баланс сервиса решения капчи"},
-  "Software ID in the referral system of service": {"ru":"ID софта в реферальной системе сервиса"},
-  "Link site on which you want to solve captcha": {"ru":"Ссылка сайта на которой нужно решить капчу"},
-  "Delay between receiving results (seconds)": {"ru":"Задержка между получениями результата (секунд)"},
-  "Delay before the first result (seconds)": {"ru":"Задержка перед первым получением результата (секунд)"},
-  "Use default surl https://funcaptcha.com": {"ru":"Использовать surl по умолчанию https://funcaptcha.com"},
-  "The name of the action to be solved captcha": {"ru":"Название действия для которого будет решена капча"},
-  "Minimum rating which should come from the server response": {"ru":"Минимальный рейтинг с которым должен приходить ответ от сервера"},
-  "Request is sent to the service for the correct Recaptcha solution": {"ru":"На сервис отправляется запрос о верном решении Recaptcha"},
-  "Request for an incorrect Recaptcha solution is sent to the service": {"ru":"На сервис отправляется запрос о неверном решении Recaptcha"},
-  "Your cookies that will be passed to our worker who solve the captha.": {"ru":"Ваши cookies которые будут использованы работником для решения капчи."},
-  "Special subdomain funcaptcha.com, which must be loaded with JS widget captcha": {"ru":"Специальный субдомен funcaptcha.com, с которого должен загружаться JS виджет капчи"},
-  "An additional parameter in the form of an json string that may be required for certain solutions FunCaptcha": {"ru":"Дополнительный параметр в виде json строки, который может требоваться для некоторых решений FunCaptcha"},
-  "Tells us to solve FunCaptcha without javascript enabled. Can be used in case when normal method doesn't work for some reason. If you enable this parameter, API will return just first part of token string like this: 3084f4a302b176cd7.96368058|r=ap-southeast-1 and you got to build the full string using the original value of fc-token.": {"ru":"Говорит нам решать FunCaptcha с выключенным javascript. Может быть использован в случае, если нормальный метод по какой-то причине не срабатывает. Если вы включите данный параметр, то API вернёт лишь часть токена в таком виде: 3084f4a302b176cd7.96368058|r=ap-southeast-1 и вам нужно собрать весь токен целиком самостоятельно, используя оригинальное значение fc-token."}
+    "is empty": {
+      "ru": "пуст"
+    },
+    "Balance": {
+      "ru": "Баланс"
+    },
+    "Service": {
+      "ru": "Сервис"
+    },
+    "Result": {
+      "ru": "Результат"
+    },
+    "Soft Id": {
+      "ru": "ID софта"
+    },
+    "Site URL": {
+      "ru": "URL сайта"
+    },
+    "Site Key": {
+      "ru": "Ключ сайта"
+    },
+    "Server URL": {
+      "ru": "URL сервера"
+    },
+    "Service key": {
+      "ru": "Ключ сервиса"
+    },
+    "Not use js": {
+      "ru": "Не использовать js"
+    },
+    "Action name": {
+      "ru": "Название действия"
+    },
+    "Solve hCaptcha": {
+      "ru": "Решить hCaptcha"
+    },
+    "Minimum rating": {
+      "ru": "Минимальный рейтинг"
+    },
+    "Solve FunCaptcha": {
+      "ru": "Решить FunCaptcha"
+    },
+    "Solve Recaptcha V2": {
+      "ru": "Решить Recaptcha V2"
+    },
+    "Solve Recaptcha V3": {
+      "ru": "Решить Recaptcha V3"
+    },
+    "Replace server URL": {
+      "ru": "Заменять URL сервера"
+    },
+    "Captcha picture data": {
+      "ru": "Данные изображения"
+    },
+    "Server URL replacement": {
+      "ru": "Замена URL сервера"
+    },
+    "Is Enterprise Captcha": {
+      "ru": "Это Enterprise капча"
+    },
+    "Is Invisible Captcha": {
+      "ru": "Это невидимая капча"
+    },
+    "Captcha solution service": {
+      "ru": "Сервис решения капчи"
+    },
+    "Result solutions captcha": {
+      "ru": "Результат решения капчи"
+    },
+    "Captcha solution service key": {
+      "ru": "Ключ сервиса решения капчи"
+    },
+    "surl (Optional parameter)": {
+      "ru": "surl (Необязательный параметр)"
+    },
+    "data (Optional parameter)": {
+      "ru": "data (Необязательный параметр)"
+    },
+    "Send proxy to solver service": {
+      "ru": "Отправлять прокси на сервис"
+    },
+    "It is the Enterprise Captcha": {
+      "ru": "Является ли капча Enterprise"
+    },
+    "It is the Invisible Captcha": {
+      "ru": "Является ли капча невидимой"
+    },
+    "Captcha key for the specified site": {
+      "ru": "Ключ капчи для указанного сайта"
+    },
+    "Delay between receiving results": {
+      "ru": "Задержка между получениями результата"
+    },
+    "Delay before the first result": {
+      "ru": "Задержка перед первым получением результата"
+    },
+    "Get the balance of a captcha solution service": {
+      "ru": "Получить баланс сервиса решения капчи"
+    },
+    "Software ID in the referral system of service": {
+      "ru": "ID софта в реферальной системе сервиса"
+    },
+    "Link site on which you want to solve captcha": {
+      "ru": "Ссылка сайта на которой нужно решить капчу"
+    },
+    "Delay between receiving results (seconds)": {
+      "ru": "Задержка между получениями результата (секунд)"
+    },
+    "Delay before the first result (seconds)": {
+      "ru": "Задержка перед первым получением результата (секунд)"
+    },
+    "Use default surl https://funcaptcha.com": {
+      "ru": "Использовать surl по умолчанию https://funcaptcha.com"
+    },
+    "The name of the action to be solved captcha": {
+      "ru": "Название действия для которого будет решена капча"
+    },
+    "Minimum rating which should come from the server response": {
+      "ru": "Минимальный рейтинг с которым должен приходить ответ от сервера"
+    },
+    "Request is sent to the service for the correct Recaptcha solution": {
+      "ru": "На сервис отправляется запрос о верном решении Recaptcha"
+    },
+    "Request for an incorrect Recaptcha solution is sent to the service": {
+      "ru": "На сервис отправляется запрос о неверном решении Recaptcha"
+    },
+    "Your cookies that will be passed to our worker who solve the captha.": {
+      "ru": "Ваши cookies которые будут использованы работником для решения капчи."
+    },
+    "Special subdomain funcaptcha.com, which must be loaded with JS widget captcha": {
+      "ru": "Специальный субдомен funcaptcha.com, с которого должен загружаться JS виджет капчи"
+    },
+    "An additional parameter in the form of an json string that may be required for certain solutions FunCaptcha": {
+      "ru": "Дополнительный параметр в виде json строки, который может требоваться для некоторых решений FunCaptcha"
+    },
+    "Tells us to solve FunCaptcha without javascript enabled. Can be used in case when normal method doesn't work for some reason. If you enable this parameter, API will return just first part of token string like this: 3084f4a302b176cd7.96368058|r=ap-southeast-1 and you got to build the full string using the original value of fc-token.": {
+      "ru": "Говорит нам решать FunCaptcha с выключенным javascript. Может быть использован в случае, если нормальный метод по какой-то причине не срабатывает. Если вы включите данный параметр, то API вернёт лишь часть токена в таком виде: 3084f4a302b176cd7.96368058|r=ap-southeast-1 и вам нужно собрать весь токен целиком самостоятельно, используя оригинальное значение fc-token."
+    }
   },
-  "major_version": 2,
+  "major_version": 3,
   "minor_version": 1,
-  "modules": [
-  ],
-  "name": "CaptchaCustom"
+  "modules": [],
+  "name": "CaptchaCustomModUserTrue"
 }

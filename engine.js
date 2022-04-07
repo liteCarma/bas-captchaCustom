@@ -133,8 +133,14 @@ function CaptchaCustom_GetBalance(){
 	_switch_http_client_internal();
 
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
-		http_client_post(_CAPTCHA_SERVICE_URL + "/getBalance", ["clientKey",_CAPTCHA_SERVICE_KEY], {"content-type":("json"), "encoding":("UTF-8"), "method":("POST")})!
-		
+    var body = got.createData('application/json')
+    body.add('clientKey', _CAPTCHA_SERVICE_KEY);
+
+    _call_function(got.post, {
+      url: _CAPTCHA_SERVICE_URL + "/getBalance",
+      body: body
+    })!
+
 		var resp = JSON.parse(http_client_encoded_content("auto"));
 		
 		if(resp["errorId"]){
@@ -145,7 +151,9 @@ function CaptchaCustom_GetBalance(){
 	})!
 	
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
-		http_client_get2(_CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=getbalance&json=1",{method:("GET")})!
+    _call_function(got.get, {
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=getbalance&json=1"
+    })!
 		
 		var resp = http_client_encoded_content("auto");
 			
@@ -269,8 +277,15 @@ function CaptchaCustom_SolveCaptcha(){
 		};
 
 		data["task"] = task;
-		
-		http_client_post(_CAPTCHA_SERVICE_URL + "/createTask", ["data",JSON.stringify(data)], {"content-type":("application/json"), "encoding":("UTF-8"), "method":("POST")})!
+    var body = got.createData('application/json')
+    for (key in data) {
+      body.add(key, data[key]);
+    }
+
+    _call_function(got.post, {
+      url: _CAPTCHA_SERVICE_URL + "/createTask",
+      body: body
+    })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
 
@@ -283,7 +298,14 @@ function CaptchaCustom_SolveCaptcha(){
 		sleep(_CAPTCHA_DELAY_FIRST_RESULT)!
 		
 		_do(function(){
-			http_client_post(_CAPTCHA_SERVICE_URL + "/getTaskResult", ["data",JSON.stringify({"clientKey":_CAPTCHA_SERVICE_KEY,"taskId":_CAPTCHA_TASKID})], {"content-type":("application/json"), "encoding":("UTF-8"), "method":("POST")})!
+      var body = got.createData('application/json')
+      body.add('clientKey', _CAPTCHA_SERVICE_KEY);
+      body.add('taskId', _CAPTCHA_TASKID);
+
+      _call_function(got.post, {
+        url: _CAPTCHA_SERVICE_URL + "/getTaskResult",
+        body: body
+      })!
 			
 			var resp = JSON.parse(http_client_encoded_content("auto"));
 			
@@ -309,70 +331,74 @@ function CaptchaCustom_SolveCaptcha(){
 	})!
 	
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
-		var data = _CAPTCHA_VERSION=="Image" ? ["key", _CAPTCHA_SERVICE_KEY, "json", 1] : "?key=" + _CAPTCHA_SERVICE_KEY + "&pageurl=" + encodeURIComponent(_CAPTCHA_SITE_URL) + "&json=1";
+    var body = _CAPTCHA_VERSION=="Image" ? got.createData('multipart/form-data') : got.createData('application/x-www-form-urlencoded');
+    body.add('key', _CAPTCHA_SERVICE_KEY);
+    body.add('json', 1);
 
-		var add_data = _CAPTCHA_VERSION=="Image" ? function(name, value){data.push(name, value)} : function(name, value){data += "&" + name + "=" + value};
-		
+    if (_CAPTCHA_VERSION !== "Image") {
+      body.add('pageurl', _CAPTCHA_SITE_URL);
+    }
+
 		switch (_CAPTCHA_VERSION) {
 			case "Image":
-				add_data("method", "base64");
-        add_data("language", _CAPTCHA_LANG);
-				add_data("body", _CAPTCHA_BODY);
+        body.add("method", "base64");
+        body.add("language", _CAPTCHA_LANG);
+				body.add("body", _CAPTCHA_BODY);
 				break;
 			case "RecaptchaV2":
-				add_data("method", "userrecaptcha");
-				add_data("googlekey", _CAPTCHA_SITE_KEY);
+				body.add("method", "userrecaptcha");
+				body.add("googlekey", _CAPTCHA_SITE_KEY);
 				if(_CAPTCHA_IS_ENTERPRISE){
-					add_data("version", "enterprise");
+					body.add("version", "enterprise");
 				};
 				if(!_CAPTCHA_IS_ENTERPRISE && _CAPTCHA_DATA_S){
-					add_data("data-s", _CAPTCHA_DATA_S);
+					body.add("data-s", _CAPTCHA_DATA_S);
 				};
 				if(!_CAPTCHA_IS_ENTERPRISE && _CAPTCHA_INVISIBLE){
-					add_data("invisible", 1);
+					body.add("invisible", 1);
 				};
 
 				if(_CAPTCHA_COOKIES){
-					add_data("cookies", _CAPTCHA_COOKIES);
+					body.add("cookies", _CAPTCHA_COOKIES);
 				};
 
         if (_CAPTCHA_IS_ENTERPRISE && _CAPTCHA_ENTERPRISE_ACTION !== '') {
-          add_data("action", _CAPTCHA_ENTERPRISE_ACTION);
+          body.add("action", _CAPTCHA_ENTERPRISE_ACTION);
         }
 				break;
 			case "RecaptchaV3":
-				add_data("method", "userrecaptcha");
-				add_data("googlekey", _CAPTCHA_SITE_KEY);
+				body.add("method", "userrecaptcha");
+				body.add("googlekey", _CAPTCHA_SITE_KEY);
 				if(_CAPTCHA_IS_ENTERPRISE){
-					add_data("version", "enterprise");
+					body.add("version", "enterprise");
 				}else{
-					add_data("version", "v3");
+					body.add("version", "v3");
 				};
-				add_data("min_score", _CAPTCHA_MIN_SCORE);
+				body.add("min_score", _CAPTCHA_MIN_SCORE);
 				if(_CAPTCHA_ACTION){
-					add_data("action", _CAPTCHA_ACTION);
+					body.add("action", _CAPTCHA_ACTION);
 				};
 				break;
 			case "hCaptcha":
-				add_data("method", "hcaptcha");
-				add_data("sitekey", _CAPTCHA_SITE_KEY);
+				body.add("method", "hcaptcha");
+				body.add("sitekey", _CAPTCHA_SITE_KEY);
 				break;
 			case "FunCaptcha":
-				add_data("method", "funcaptcha");
-				add_data("publickey", _CAPTCHA_SITE_KEY);
-        add_data("action", 'get');
+				body.add("method", "funcaptcha");
+				body.add("publickey", _CAPTCHA_SITE_KEY);
+        body.add("action", 'get');
 				if(_CAPTCHA_NOJS){
-					add_data("nojs", 1);
+					body.add("nojs", 1);
 				};
 				if(_CAPTCHA_SURL){
-					add_data("surl", _CAPTCHA_SURL);
+					body.add("surl", _CAPTCHA_SURL);
 				};
 				if(_CAPTCHA_DATA){
 					if(typeof _CAPTCHA_DATA!="object"){
 						_CAPTCHA_DATA = JSON.parse(_CAPTCHA_DATA);
 					};
-					Object.keys(_CAPTCHA_DATA).forEach(function callback(key){
-						add_data("data[" + key + "]", _CAPTCHA_DATA[key]);
+					Object.keys(_CAPTCHA_DATA).forEach(function (key){
+						body.add("data[" + key + "]", _CAPTCHA_DATA[key]);
 					});
 				};
 				break;
@@ -382,27 +408,35 @@ function CaptchaCustom_SolveCaptcha(){
 		
 		if(_CAPTCHA_VERSION!="Image"){
 			if(_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]){
-				add_data("proxytype", _CAPTCHA_PROXYHASH["IsHttp"] ? "HTTPS" : "SOCKS5")
+				body.add("proxytype", _CAPTCHA_PROXYHASH["IsHttp"] ? "HTTPS" : "SOCKS5")
 				if(_CAPTCHA_PROXYHASH["name"] && _CAPTCHA_PROXYHASH["password"]){
-					add_data("proxy", _CAPTCHA_PROXYHASH["name"] + ":" + _CAPTCHA_PROXYHASH["password"] + "@" + _CAPTCHA_PROXYHASH["server"] + ":" + _CAPTCHA_PROXYHASH["Port"])
+					body.add("proxy", _CAPTCHA_PROXYHASH["name"] + ":" + _CAPTCHA_PROXYHASH["password"] + "@" + _CAPTCHA_PROXYHASH["server"] + ":" + _CAPTCHA_PROXYHASH["Port"])
 				}else{
-					add_data("proxy", _CAPTCHA_PROXYHASH["server"] + ":" + _CAPTCHA_PROXYHASH["Port"])
+					body.add("proxy", _CAPTCHA_PROXYHASH["server"] + ":" + _CAPTCHA_PROXYHASH["Port"])
 				};
 			};
 			
 			if(_CAPTCHA_USERAGENT){
-				add_data("userAgent", encodeURIComponent(_CAPTCHA_USERAGENT));
+				body.add("userAgent", encodeURIComponent(_CAPTCHA_USERAGENT));
 			};
 		};
 		
 		if(_CAPTCHA_SOFTID){
-			add_data(_CAPTCHA_SOFTID_TITLE, _CAPTCHA_SOFTID);
+			body.add(_CAPTCHA_SOFTID_TITLE, _CAPTCHA_SOFTID);
 		};
 		
 		_if_else(_CAPTCHA_VERSION=="Image", function(){
-			http_client_post(_CAPTCHA_SERVICE_URL + "/in.php", data, {"content-type":("multipart"), "encoding":("UTF-8"), "method":("POST")})!
+      _call_function(got.post, {
+        url: _CAPTCHA_SERVICE_URL + "/in.php",
+        body: body,
+        headers: {
+          'Content-Type': body.contentType
+        }
+      })!
 		}, function(){
-			http_client_get2(_CAPTCHA_SERVICE_URL + "/in.php" + data,{method:("GET")})!
+      _call_function(got.get, {
+        url: _CAPTCHA_SERVICE_URL + "/in.php?" + body.toString()
+      })!
 		})!
 		
 		var resp = http_client_encoded_content("auto");
@@ -426,7 +460,9 @@ function CaptchaCustom_SolveCaptcha(){
 		sleep(_CAPTCHA_DELAY_FIRST_RESULT)!
 		
 		_do(function(){
-			http_client_get2(_CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=get&id=" + _CAPTCHA_TASKID + "&json=1",{method:("GET")})!
+      _call_function(got.get, {
+        url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=get&id=" + _CAPTCHA_TASKID + "&json=1"
+      })!
 			
 			var resp = http_client_encoded_content("auto");
 			
@@ -583,22 +619,40 @@ function CaptchaCustom_FunCaptcha(){
 function CaptchaCustom_ReportGood(){
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){		
 		_switch_http_client_internal();
-		http_client_get2(_CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportgood&id=" + _CAPTCHA_TASKID + "&json=1",{method:("GET")})!
+    _call_function(got.get, {
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportgood&id=" + _CAPTCHA_TASKID + "&json=1"
+    })!
 	})!
 };
 function CaptchaCustom_ReportBad(){
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
 		_if(_CAPTCHA_VERSION=="RecaptchaV2" || _CAPTCHA_VERSION=="RecaptchaV3",function(){
 			_switch_http_client_internal();
-			http_client_post(_CAPTCHA_SERVICE_URL + "/reportIncorrectRecaptcha", ["data",JSON.stringify({"clientKey":_CAPTCHA_SERVICE_KEY,"taskId":_CAPTCHA_TASKID})], {"content-type":("application/json"), "encoding":("UTF-8"), "method":("POST")})!
+      var body = got.createData('application/json')
+      body.add('clientKey', _CAPTCHA_SERVICE_KEY);
+      body.add('taskId', _CAPTCHA_TASKID);
+
+      _call_function(got.post, {
+        url: _CAPTCHA_SERVICE_URL + "/reportIncorrectRecaptcha",
+        body: body
+      })!
 		})!
 		_if(_CAPTCHA_VERSION=="Image",function(){
 			_switch_http_client_internal();
-			http_client_post(_CAPTCHA_SERVICE_URL + "/reportIncorrectImageCaptcha", ["data",JSON.stringify({"clientKey":_CAPTCHA_SERVICE_KEY,"taskId":_CAPTCHA_TASKID})], {"content-type":("application/json"), "encoding":("UTF-8"), "method":("POST")})!
+      var body = got.createData('application/json')
+      body.add('clientKey', _CAPTCHA_SERVICE_KEY);
+      body.add('taskId', _CAPTCHA_TASKID);
+
+      _call_function(got.post, {
+        url: _CAPTCHA_SERVICE_URL + "/reportIncorrectImageCaptcha",
+        body: body
+      })!
 		})!
 	})!
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
 		_switch_http_client_internal();
-		http_client_get2(_CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportbad&id=" + _CAPTCHA_TASKID + "&json=1",{method:("GET")})!
+    _call_function(got.get, {
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportbad&id=" + _CAPTCHA_TASKID + "&json=1"
+    })!
 	})!
 };

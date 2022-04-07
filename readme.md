@@ -7,3 +7,5 @@
 1. Service anycaptcha.com
 2. Choosing the language of a simple captcha
 3. Additional settings for Recaptcha enterprise
+
+depends on [got](https://github.com/liteCarma/bas-got)
