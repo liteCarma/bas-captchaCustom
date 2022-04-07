@@ -138,7 +138,10 @@ function CaptchaCustom_GetBalance(){
 
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/getBalance",
-      body: body
+      body: body,
+      headers: {
+        'Content-Type': body.contentType
+      }
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -284,7 +287,10 @@ function CaptchaCustom_SolveCaptcha(){
 
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/createTask",
-      body: body
+      body: body,
+      headers: {
+        'Content-Type': body.contentType
+      }
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -304,7 +310,10 @@ function CaptchaCustom_SolveCaptcha(){
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/getTaskResult",
-        body: body
+        body: body,
+        headers: {
+          'Content-Type': body.contentType
+        }
       })!
 			
 			var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -634,7 +643,10 @@ function CaptchaCustom_ReportBad(){
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectRecaptcha",
-        body: body
+        body: body,
+        headers: {
+          'Content-Type': body.contentType
+        }
       })!
 		})!
 		_if(_CAPTCHA_VERSION=="Image",function(){
@@ -645,7 +657,10 @@ function CaptchaCustom_ReportBad(){
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectImageCaptcha",
-        body: body
+        body: body,
+        headers: {
+          'Content-Type': body.contentType
+        }
       })!
 		})!
 	})!
