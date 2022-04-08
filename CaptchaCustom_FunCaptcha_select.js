@@ -42,7 +42,7 @@ if (delayResults["original"].length == 0) {
 };
 var Save = this.$el.find("#Save").val().toUpperCase();
 try{
-    var code = loader.GetAdditionalData() + _.template($("#CaptchaCustom_FunCaptcha_code").html())({
+    var code = loader.GetAdditionalData() + _.template($("#CaptchaCustomByUserTrue_FunCaptcha_code").html())({
         "service": service["updated"],
         "serviceKey": serviceKey["updated"],
 		"serverUrl": serverUrl["updated"],

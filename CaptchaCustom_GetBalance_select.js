@@ -17,7 +17,7 @@ if (replaceService["original"].length == 0) {
 var replaceTo = GetInputConstructorValue("replaceTo", loader);
 var Save = this.$el.find("#Save").val().toUpperCase();
 try {
-    var code = loader.GetAdditionalData() + _.template($("#CaptchaCustom_GetBalance_code").html())({
+    var code = loader.GetAdditionalData() + _.template($("#CaptchaCustomByUserTrue_GetBalance_code").html())({
         "service": service["updated"],
         "serviceKey": serviceKey["updated"],
 		"serverUrl": serverUrl["updated"],

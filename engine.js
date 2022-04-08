@@ -121,7 +121,7 @@ function CaptchaCustom_SetService(){
 		_CAPTCHA_SOFTID = "";
 	};
 };
-function CaptchaCustom_GetBalance(){
+function CaptchaCustomByUserTrue_GetBalance(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -133,15 +133,13 @@ function CaptchaCustom_GetBalance(){
 	_switch_http_client_internal();
 
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
-    var body = got.createData('application/json')
+    var body = got.createData('json')
     body.add('clientKey', _CAPTCHA_SERVICE_KEY);
 
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/getBalance",
       body: body,
-      headers: {
-        'Content-Type': body.contentType
-      }
+      contentType: body.contentType
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -280,17 +278,13 @@ function CaptchaCustom_SolveCaptcha(){
 		};
 
 		data["task"] = task;
-    var body = got.createData('application/json')
-    for (key in data) {
-      body.add(key, data[key]);
-    }
+    var body = got.createData('custom/application/json')
+    body.add(JSON.stringify(data));
 
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/createTask",
       body: body,
-      headers: {
-        'Content-Type': body.contentType
-      }
+      contentType: body.contentType
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -304,16 +298,14 @@ function CaptchaCustom_SolveCaptcha(){
 		sleep(_CAPTCHA_DELAY_FIRST_RESULT)!
 		
 		_do(function(){
-      var body = got.createData('application/json')
+      var body = got.createData('json')
       body.add('clientKey', _CAPTCHA_SERVICE_KEY);
       body.add('taskId', _CAPTCHA_TASKID);
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/getTaskResult",
         body: body,
-        headers: {
-          'Content-Type': body.contentType
-        }
+        contentType: body.contentType
       })!
 			
 			var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -340,7 +332,7 @@ function CaptchaCustom_SolveCaptcha(){
 	})!
 	
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
-    var body = _CAPTCHA_VERSION=="Image" ? got.createData('multipart/form-data') : got.createData('application/x-www-form-urlencoded');
+    var body = _CAPTCHA_VERSION=="Image" ? got.createData('multipart') : got.createData('urlencode');
     body.add('key', _CAPTCHA_SERVICE_KEY);
     body.add('json', 1);
 
@@ -438,9 +430,7 @@ function CaptchaCustom_SolveCaptcha(){
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/in.php",
         body: body,
-        headers: {
-          'Content-Type': body.contentType
-        }
+        contentType: body.contentType
       })!
 		}, function(){
       _call_function(got.get, {
@@ -509,7 +499,7 @@ function CaptchaCustom_SolveCaptcha(){
 		})!
 	})!
 };
-function CaptchaCustom_Image(){
+function CaptchaCustomByUserTrue_Image(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -526,7 +516,7 @@ function CaptchaCustom_Image(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
-function CaptchaCustom_RecaptchaV2(){
+function CaptchaCustomByUserTrue_RecaptchaV2(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -553,7 +543,7 @@ function CaptchaCustom_RecaptchaV2(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
-function CaptchaCustom_RecaptchaV3(){
+function CaptchaCustomByUserTrue_RecaptchaV3(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -578,7 +568,7 @@ function CaptchaCustom_RecaptchaV3(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
-function CaptchaCustom_hCaptcha(){
+function CaptchaCustomByUserTrue_hCaptcha(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -600,7 +590,7 @@ function CaptchaCustom_hCaptcha(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
-function CaptchaCustom_FunCaptcha(){
+function CaptchaCustomByUserTrue_FunCaptcha(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
@@ -625,7 +615,7 @@ function CaptchaCustom_FunCaptcha(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
-function CaptchaCustom_ReportGood(){
+function CaptchaCustomByUserTrue_ReportGood(){
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){		
 		_switch_http_client_internal();
     _call_function(got.get, {
@@ -633,34 +623,30 @@ function CaptchaCustom_ReportGood(){
     })!
 	})!
 };
-function CaptchaCustom_ReportBad(){
+function CaptchaCustomByUserTrue_ReportBad(){
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
 		_if(_CAPTCHA_VERSION=="RecaptchaV2" || _CAPTCHA_VERSION=="RecaptchaV3",function(){
 			_switch_http_client_internal();
-      var body = got.createData('application/json')
+      var body = got.createData('json')
       body.add('clientKey', _CAPTCHA_SERVICE_KEY);
       body.add('taskId', _CAPTCHA_TASKID);
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectRecaptcha",
         body: body,
-        headers: {
-          'Content-Type': body.contentType
-        }
+        contentType: body.contentType
       })!
 		})!
 		_if(_CAPTCHA_VERSION=="Image",function(){
 			_switch_http_client_internal();
-      var body = got.createData('application/json')
+      var body = got.createData('json')
       body.add('clientKey', _CAPTCHA_SERVICE_KEY);
       body.add('taskId', _CAPTCHA_TASKID);
 
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectImageCaptcha",
         body: body,
-        headers: {
-          'Content-Type': body.contentType
-        }
+        contentType: body.contentType
       })!
 		})!
 	})!

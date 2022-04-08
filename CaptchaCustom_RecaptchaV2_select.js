@@ -46,7 +46,7 @@ var Save = this.$el.find('#Save').val().toUpperCase();
 try {
   var code =
     loader.GetAdditionalData() +
-    _.template($('#CaptchaCustom_RecaptchaV2_code').html())({
+    _.template($('#CaptchaCustomByUserTrue_RecaptchaV2_code').html())({
       service: service['updated'],
       serviceKey: serviceKey['updated'],
       serverUrl: serverUrl['updated'],
