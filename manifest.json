@@ -2,122 +2,122 @@
   "actions": [
     {
       "code": [{
-        "file": "CaptchaCustom_GetBalance_code.js",
+        "file": "CaptchaCustomByUserTrue_GetBalance_code.js",
         "name": "CaptchaCustomByUserTrue_GetBalance_code"
       }],
       "description": {
         "en": "Get balance",
         "ru": "Получить баланс"
       },
-      "interface": "CaptchaCustom_GetBalance_interface.js",
+      "interface": "CaptchaCustomByUserTrue_GetBalance_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_GetBalance",
-      "select": "CaptchaCustom_GetBalance_select.js",
+      "select": "CaptchaCustomByUserTrue_GetBalance_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_Image_code.js",
+        "file": "CaptchaCustomByUserTrue_Image_code.js",
         "name": "CaptchaCustomByUserTrue_Image_code"
       }],
       "description": {
         "en": "Solve Captcha",
         "ru": "Решить Капчу"
       },
-      "interface": "CaptchaCustom_Image_interface.js",
+      "interface": "CaptchaCustomByUserTrue_Image_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_Image",
-      "select": "CaptchaCustom_Image_select.js",
+      "select": "CaptchaCustomByUserTrue_Image_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_RecaptchaV2_code.js",
+        "file": "CaptchaCustomByUserTrue_RecaptchaV2_code.js",
         "name": "CaptchaCustomByUserTrue_RecaptchaV2_code"
       }],
       "description": {
         "en": "Solve RecaptchaV2",
         "ru": "Решить RecaptchaV2"
       },
-      "interface": "CaptchaCustom_RecaptchaV2_interface.js",
+      "interface": "CaptchaCustomByUserTrue_RecaptchaV2_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_RecaptchaV2",
-      "select": "CaptchaCustom_RecaptchaV2_select.js",
+      "select": "CaptchaCustomByUserTrue_RecaptchaV2_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_RecaptchaV3_code.js",
+        "file": "CaptchaCustomByUserTrue_RecaptchaV3_code.js",
         "name": "CaptchaCustomByUserTrue_RecaptchaV3_code"
       }],
       "description": {
         "en": "Solve RecaptchaV3",
         "ru": "Решить RecaptchaV3"
       },
-      "interface": "CaptchaCustom_RecaptchaV3_interface.js",
+      "interface": "CaptchaCustomByUserTrue_RecaptchaV3_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_RecaptchaV3",
-      "select": "CaptchaCustom_RecaptchaV3_select.js",
+      "select": "CaptchaCustomByUserTrue_RecaptchaV3_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_hCaptcha_code.js",
+        "file": "CaptchaCustomByUserTrue_hCaptcha_code.js",
         "name": "CaptchaCustomByUserTrue_hCaptcha_code"
       }],
       "description": {
         "en": "Solve hCaptcha",
         "ru": "Решить hCaptcha"
       },
-      "interface": "CaptchaCustom_hCaptcha_interface.js",
+      "interface": "CaptchaCustomByUserTrue_hCaptcha_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_hCaptcha",
-      "select": "CaptchaCustom_hCaptcha_select.js",
+      "select": "CaptchaCustomByUserTrue_hCaptcha_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_FunCaptcha_code.js",
+        "file": "CaptchaCustomByUserTrue_FunCaptcha_code.js",
         "name": "CaptchaCustomByUserTrue_FunCaptcha_code"
       }],
       "description": {
         "en": "Solve FunCaptcha",
         "ru": "Решить FunCaptcha"
       },
-      "interface": "CaptchaCustom_FunCaptcha_interface.js",
+      "interface": "CaptchaCustomByUserTrue_FunCaptcha_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_FunCaptcha",
-      "select": "CaptchaCustom_FunCaptcha_select.js",
+      "select": "CaptchaCustomByUserTrue_FunCaptcha_select.js",
       "template": "{{service}} -> {{Save}}"
     },
     {
       "code": [{
-        "file": "CaptchaCustom_ReportGood_code.js",
+        "file": "CaptchaCustomByUserTrue_ReportGood_code.js",
         "name": "CaptchaCustomByUserTrue_ReportGood_code"
       }],
       "description": {
         "en": "Recaptcha solved correctly",
         "ru": "Recaptcha решена верно"
       },
-      "interface": "CaptchaCustom_ReportGood_interface.js",
+      "interface": "CaptchaCustomByUserTrue_ReportGood_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_ReportGood",
-      "select": "CaptchaCustom_ReportGood_select.js",
+      "select": "CaptchaCustomByUserTrue_ReportGood_select.js",
       "template": ""
     },
     {
       "code": [{
-        "file": "CaptchaCustom_ReportBad_code.js",
+        "file": "CaptchaCustomByUserTrue_ReportBad_code.js",
         "name": "CaptchaCustomByUserTrue_ReportBad_code"
       }],
       "description": {
         "en": "Recaptcha solved incorrectly",
         "ru": "Recaptcha решена неверно"
       },
-      "interface": "CaptchaCustom_ReportBad_interface.js",
+      "interface": "CaptchaCustomByUserTrue_ReportBad_interface.js",
       "is_element": false,
       "name": "CaptchaCustomByUserTrue_ReportBad",
-      "select": "CaptchaCustom_ReportBad_select.js",
+      "select": "CaptchaCustomByUserTrue_ReportBad_select.js",
       "template": ""
     }
   ],

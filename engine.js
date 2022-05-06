@@ -1,4 +1,4 @@
-function CaptchaCustom_ErrorHandler(error, error_text){
+function CaptchaCustomByUserTrue_ErrorHandler(error, error_text){
     if(error=="16" || error==16){error = error_text};
 	var errors = {};
 	var message = _CAPTCHA_SERVICE_NAME + ": " + error;
@@ -23,7 +23,7 @@ function CaptchaCustom_ErrorHandler(error, error_text){
 		}
 	};
 };
-function CaptchaCustom_IsJsonString(str){
+function CaptchaCustomByUserTrue_IsJsonString(str){
 	if((typeof str==="string" && str.length > 0) && ((str.slice(0,1)=="[" && str.slice(-1)=="]") || (str.slice(0,1)=="{" && str.slice(-1)=="}"))){
 		try{
 			JSON.parse(str);
@@ -35,17 +35,17 @@ function CaptchaCustom_IsJsonString(str){
 		return false;
 	};
 };
-function CaptchaCustom_Clean(v,u){
+function CaptchaCustomByUserTrue_Clean(v,u){
 	switch (v) {
 		case 1:
 			return u.slice(-1)=="/" ? u.slice(0, -1) : u;
 		case 2:
 			return u.replace(new RegExp('https?://'),"");
 		case 3:
-			return CaptchaCustom_Clean(2, u).replace(/^api./,"");
+			return CaptchaCustomByUserTrue_Clean(2, u).replace(/^api./,"");
 	};
 };
-function CaptchaCustom_SetService(){
+function CaptchaCustomByUserTrue_SetService(){
 	switch (_CAPTCHA_SERVICE) {
 		case "rucaptcha":
 			_CAPTCHA_SERVICE_URL = "https://rucaptcha.com";
@@ -96,7 +96,7 @@ function CaptchaCustom_SetService(){
 			_CAPTCHA_SOFTID_TITLE = "softId";
 			break;
 		case "capmonster":
-			_CAPTCHA_SERVICE_URL = CaptchaCustom_Clean(1, _CAPTCHA_SERVER_URL);
+			_CAPTCHA_SERVICE_URL = CaptchaCustomByUserTrue_Clean(1, _CAPTCHA_SERVER_URL);
 			_CAPTCHA_SERVICE_NAME = "Capmonster";
 			_CAPTCHA_API_VERSION = "antigate";
 			_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3","FunCaptcha"];
@@ -104,7 +104,7 @@ function CaptchaCustom_SetService(){
 			_CAPTCHA_SOFTID_TITLE = "softId";
 			break;
 		case "xevil":
-			_CAPTCHA_SERVICE_URL = CaptchaCustom_Clean(1, _CAPTCHA_SERVER_URL);
+			_CAPTCHA_SERVICE_URL = CaptchaCustomByUserTrue_Clean(1, _CAPTCHA_SERVER_URL);
 			_CAPTCHA_SERVICE_NAME = "XEvil";
 			_CAPTCHA_API_VERSION = "rucaptcha";
 			_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3"];
@@ -115,8 +115,8 @@ function CaptchaCustom_SetService(){
 			die(_K=="ru" ? ("Сервиса " + _CAPTCHA_SERVICE + " нет в списке доступных") : (_CAPTCHA_SERVICE + " service is not in the list of available"), true);
 	};
 	if(_CAPTCHA_REPLACE_SERVICE && _CAPTCHA_REPLACE_TO && _CAPTCHA_SERVICE!="capmonster" && _CAPTCHA_SERVICE!="xevil"){
-		_CAPTCHA_SERVICE_URL = CaptchaCustom_Clean(1, _CAPTCHA_REPLACE_TO);
-		_CAPTCHA_SERVICE_NAME = CaptchaCustom_Clean(3, _CAPTCHA_SERVICE_URL);
+		_CAPTCHA_SERVICE_URL = CaptchaCustomByUserTrue_Clean(1, _CAPTCHA_REPLACE_TO);
+		_CAPTCHA_SERVICE_NAME = CaptchaCustomByUserTrue_Clean(3, _CAPTCHA_SERVICE_URL);
 		_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3","hCaptcha","FunCaptcha"];
 		_CAPTCHA_SOFTID = "";
 	};
@@ -128,7 +128,7 @@ function CaptchaCustomByUserTrue_GetBalance(){
 	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
 	
-	CaptchaCustom_SetService();
+	CaptchaCustomByUserTrue_SetService();
 	
 	_switch_http_client_internal();
 
@@ -145,7 +145,7 @@ function CaptchaCustomByUserTrue_GetBalance(){
 		var resp = JSON.parse(http_client_encoded_content("auto"));
 		
 		if(resp["errorId"]){
-			CaptchaCustom_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
+			CaptchaCustomByUserTrue_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
 		}else{
 			_CAPTCHA_BALANCE = resp["balance"];
 		};
@@ -158,31 +158,31 @@ function CaptchaCustomByUserTrue_GetBalance(){
 		
 		var resp = http_client_encoded_content("auto");
 			
-		_if_else(CaptchaCustom_IsJsonString(resp), function(){
+		_if_else(CaptchaCustomByUserTrue_IsJsonString(resp), function(){
 			resp = JSON.parse(resp);
 
 			if(resp["status"]){
 				_CAPTCHA_BALANCE = resp["request"];
 			}else{
-				CaptchaCustom_ErrorHandler(resp["request"], resp["error_text"]);
+				CaptchaCustomByUserTrue_ErrorHandler(resp["request"], resp["error_text"]);
 			};
 		}, function(){
 			if(resp.indexOf("OK") > -1){
 				_CAPTCHA_BALANCE = resp.split("|")[1];
 			}else{
-				CaptchaCustom_ErrorHandler(resp, "");
+				CaptchaCustomByUserTrue_ErrorHandler(resp, "");
 			};
 		})!
 	})!
 	
 	_function_return(parseFloat(_CAPTCHA_BALANCE))
 };
-function CaptchaCustom_SolveCaptcha(){
+function CaptchaCustomByUserTrue_SolveCaptcha(){
 	_CAPTCHA_VERSION = _function_argument("version");
 	_CAPTCHA_DELAY_FIRST_RESULT = _CAPTCHA_DELAY_FIRST_RESULT*1000;
 	_CAPTCHA_DELAY_RESULTS = _CAPTCHA_DELAY_RESULTS*1000;
 
-	CaptchaCustom_SetService();
+	CaptchaCustomByUserTrue_SetService();
 	
 	if(_CAPTCHA_SUPPORTED.indexOf(_CAPTCHA_VERSION) < 0){
 		die(_K == "ru" ? (_CAPTCHA_SERVICE_NAME + " не умеет решать " + _CAPTCHA_VERSION) : (_CAPTCHA_SERVICE_NAME + " can't solve " + _CAPTCHA_VERSION), true);
@@ -244,7 +244,7 @@ function CaptchaCustom_SolveCaptcha(){
 				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? "FunCaptchaTask" : "FunCaptchaTaskProxyless";
 				task["websitePublicKey"] = _CAPTCHA_SITE_KEY;
 				if(_CAPTCHA_SURL){
-					task["funcaptchaApiJSSubdomain"] = CaptchaCustom_Clean(2, _CAPTCHA_SURL);
+					task["funcaptchaApiJSSubdomain"] = CaptchaCustomByUserTrue_Clean(2, _CAPTCHA_SURL);
 				};
 				if(_CAPTCHA_DATA){
 					if(typeof _CAPTCHA_DATA=="object"){
@@ -290,7 +290,7 @@ function CaptchaCustom_SolveCaptcha(){
 		var resp = JSON.parse(http_client_encoded_content("auto"));
 
 		if(resp["errorId"]){
-			CaptchaCustom_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
+			CaptchaCustomByUserTrue_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
 		}else{
 			_CAPTCHA_TASKID = resp["taskId"];
 		};
@@ -311,18 +311,18 @@ function CaptchaCustom_SolveCaptcha(){
 			var resp = JSON.parse(http_client_encoded_content("auto"));
 			
 			if(resp["errorId"]){
-				CaptchaCustom_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
+				CaptchaCustomByUserTrue_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
 			}else{
 				if(resp["status"]=="ready"){
 					var result_name = _CAPTCHA_VERSION=="Image" ? "text" : _CAPTCHA_VERSION=="FunCaptcha" ? "token" : "gRecaptchaResponse";
 					if(resp["solution"][result_name].indexOf("ERROR") > -1){
-						CaptchaCustom_ErrorHandler(resp["solution"][result_name], "");
+						CaptchaCustomByUserTrue_ErrorHandler(resp["solution"][result_name], "");
 					};
 					_CAPTCHA_RESPONSE = resp["solution"][result_name];
 					_break("function");
 				}else{
 					if(resp["status"]!="processing"){
-						CaptchaCustom_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
+						CaptchaCustomByUserTrue_ErrorHandler(resp["errorCode"], resp["errorDescription"]);
 					};
 				};
 			};
@@ -440,19 +440,19 @@ function CaptchaCustom_SolveCaptcha(){
 		
 		var resp = http_client_encoded_content("auto");
 			
-		_if_else(CaptchaCustom_IsJsonString(resp), function(){
+		_if_else(CaptchaCustomByUserTrue_IsJsonString(resp), function(){
 			resp = JSON.parse(resp);
 
 			if(resp["status"]){
 				_CAPTCHA_TASKID = resp["request"];
 			}else{
-				CaptchaCustom_ErrorHandler(resp["request"], resp["error_text"]);
+				CaptchaCustomByUserTrue_ErrorHandler(resp["request"], resp["error_text"]);
 			};
 		}, function(){
 			if(resp.indexOf("OK") > -1){
 				_CAPTCHA_TASKID = resp.split("|")[1];
 			}else{
-				CaptchaCustom_ErrorHandler(resp, "");
+				CaptchaCustomByUserTrue_ErrorHandler(resp, "");
 			};
 		})!
 		
@@ -465,11 +465,11 @@ function CaptchaCustom_SolveCaptcha(){
 			
 			var resp = http_client_encoded_content("auto");
 			
-			_if_else(CaptchaCustom_IsJsonString(resp), function(){
+			_if_else(CaptchaCustomByUserTrue_IsJsonString(resp), function(){
 				resp = JSON.parse(resp);
 
 				if(resp["request"].indexOf("ERROR") > -1 || resp["request"]=="IP_BANNED" || resp["request"]=="MAX_USER_TURN"){
-					CaptchaCustom_ErrorHandler(resp["request"], resp["error_text"]);
+					CaptchaCustomByUserTrue_ErrorHandler(resp["request"], resp["error_text"]);
 				};
 
 				if(resp["status"]){
@@ -477,12 +477,12 @@ function CaptchaCustom_SolveCaptcha(){
 						_CAPTCHA_RESPONSE = resp["request"];
 						_break("function");
 					}else{
-						CaptchaCustom_ErrorHandler(resp["request"], resp["error_text"]);
+						CaptchaCustomByUserTrue_ErrorHandler(resp["request"], resp["error_text"]);
 					};
 				};
 			}, function(){
 				if(resp.indexOf("ERROR") > -1 || resp=="IP_BANNED" || resp=="MAX_USER_TURN"){
-					CaptchaCustom_ErrorHandler(resp, "");
+					CaptchaCustomByUserTrue_ErrorHandler(resp, "");
 				};
 				
 				if(resp!="CAPCHA_NOT_READY"){
@@ -490,7 +490,7 @@ function CaptchaCustom_SolveCaptcha(){
 						_CAPTCHA_RESPONSE = resp.split("|")[1];
 						_break("function");
 					}else{
-						CaptchaCustom_ErrorHandler(resp, "");
+						CaptchaCustomByUserTrue_ErrorHandler(resp, "");
 					};
 				};
 			})!
@@ -511,7 +511,7 @@ function CaptchaCustomByUserTrue_Image(){
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
 	_CAPTCHA_USEPROXY = false;
 
-	_call_function(CaptchaCustom_SolveCaptcha,{"version":"Image"})!
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"Image"})!
 	_result_function()
 
 	_function_return(_CAPTCHA_RESPONSE)
@@ -538,7 +538,7 @@ function CaptchaCustomByUserTrue_RecaptchaV2(){
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
 
-	_call_function(CaptchaCustom_SolveCaptcha, {"version":"RecaptchaV2"})!
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha, {"version":"RecaptchaV2"})!
 	_result_function()
 
 	_function_return(_CAPTCHA_RESPONSE)
@@ -563,7 +563,7 @@ function CaptchaCustomByUserTrue_RecaptchaV3(){
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
 
-	_call_function(CaptchaCustom_SolveCaptcha,{"version":"RecaptchaV3"})!
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"RecaptchaV3"})!
 	_result_function()
 
 	_function_return(_CAPTCHA_RESPONSE)
@@ -585,7 +585,7 @@ function CaptchaCustomByUserTrue_hCaptcha(){
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
 
-	_call_function(CaptchaCustom_SolveCaptcha,{"version":"hCaptcha"})!
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"hCaptcha"})!
 	_result_function()
 
 	_function_return(_CAPTCHA_RESPONSE)
@@ -610,7 +610,7 @@ function CaptchaCustomByUserTrue_FunCaptcha(){
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
 
-	_call_function(CaptchaCustom_SolveCaptcha,{"version":"FunCaptcha"})!
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"FunCaptcha"})!
 	_result_function()
 
 	_function_return(_CAPTCHA_RESPONSE)
