@@ -239,6 +239,9 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 			case "hCaptcha":
 				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? "HCaptchaTask" : "HCaptchaTaskProxyless";
 				task["websiteKey"] = _CAPTCHA_SITE_KEY;
+        if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
+          task["enterprisePayload"] = _CAPTCHA_ENTERPRISE_PAYLOAD
+        }
 				break;
 			case "FunCaptcha":
 				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? "FunCaptchaTask" : "FunCaptchaTaskProxyless";
@@ -383,6 +386,10 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 			case "hCaptcha":
 				body.add("method", "hcaptcha");
 				body.add("sitekey", _CAPTCHA_SITE_KEY);
+        if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
+          body.add("data", _CAPTCHA_ENTERPRISE_PAYLOAD);
+          body.add("invisible", 1);
+        }
 				break;
 			case "FunCaptcha":
 				body.add("method", "funcaptcha");
@@ -584,6 +591,7 @@ function CaptchaCustomByUserTrue_hCaptcha(){
 	_CAPTCHA_USERAGENT = _function_argument("userAgent");
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
+  _CAPTCHA_ENTERPRISE_PAYLOAD = _function_argument("enterprisePayload");
 
 	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"hCaptcha"})!
 	_result_function()

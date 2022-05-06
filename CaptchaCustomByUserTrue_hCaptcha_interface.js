@@ -40,6 +40,7 @@
 			<%= _.template($('#input_constructor').html())({id:"proxyPassword", description:tr("Proxy password. Can be blank."), default_selector: "string", disable_int:true, help: {description: tr("Proxy password, overrides password set in proxy string. Useful if you have many proxy with same login and password.")}}) %>
 		</span>
 		<%= _.template($('#input_constructor').html())({id:"userAgent", description:"User Agent", default_selector: "string", disable_int:true, value_string: ""}) %>
+    <%= _.template($('#input_constructor').html())({id:"enterprisePayload", description:"enterprise payload", default_selector: "string", disable_int:true, value_string: ""}) %>
 		<%= _.template($('#input_constructor').html())({id:"delayFirstResult", description:tr("Delay before the first result (seconds)"), default_selector: "int", disable_string:true, value_number: 10, min_number:0, max_number:999999, help: {description: tr("The delay before the first result (seconds)")} }) %>
 		<%= _.template($('#input_constructor').html())({id:"delayResults", description:tr("Delay between receiving results (seconds)"), default_selector: "int", disable_string:true, value_number: 5, min_number:0, max_number:999999, help: {description: tr("Delay between receiving results (seconds)")} }) %>
 	</span>
