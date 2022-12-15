@@ -21,6 +21,8 @@ if (siteURL["original"].length == 0) {
   Invalid(tr("Site URL") + " " + tr("is empty"));
   return;
 };
+
+var isInvisible = GetInputConstructorValue('isInvisible', loader);
 var useProxy = GetInputConstructorValue("useProxy", loader);
 var proxyType = GetInputConstructorValue("proxyType", loader);
 var proxy = GetInputConstructorValue("proxy", loader);
@@ -48,6 +50,7 @@ try {
     "siteURL": siteURL["updated"],
     "replaceService": replaceService["updated"],
     "replaceTo": replaceTo["updated"],
+    "isInvisible": isInvisible['updated'],
     "useProxy": useProxy["updated"],
     "proxy": proxy["updated"],
     "proxyType": proxyType["updated"],

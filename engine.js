@@ -125,7 +125,7 @@ function CaptchaCustomByUserTrue_GetBalance(){
 	_CAPTCHA_SERVICE = _function_argument("service");
 	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
 	
 	CaptchaCustomByUserTrue_SetService();
@@ -242,6 +242,7 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
         if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
           task["enterprisePayload"] = _CAPTCHA_ENTERPRISE_PAYLOAD
         }
+        task["isInvisible"] = true;
 				break;
 			case "FunCaptcha":
 				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? "FunCaptchaTask" : "FunCaptchaTaskProxyless";
@@ -388,8 +389,8 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 				body.add("sitekey", _CAPTCHA_SITE_KEY);
         if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
           body.add("data", _CAPTCHA_ENTERPRISE_PAYLOAD);
-          body.add("invisible", 1);
         }
+        body.add("invisible", Number(_CAPTCHA_INVISIBLE));
 				break;
 			case "FunCaptcha":
 				body.add("method", "funcaptcha");
@@ -512,7 +513,7 @@ function CaptchaCustomByUserTrue_Image(){
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
   _CAPTCHA_LANG = _function_argument("lang");
 	_CAPTCHA_BODY = _function_argument("body");
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
@@ -529,14 +530,14 @@ function CaptchaCustomByUserTrue_RecaptchaV2(){
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
 	_CAPTCHA_SITE_URL = _function_argument("siteURL");
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
-	_CAPTCHA_IS_ENTERPRISE = eval(_function_argument("isEnterprise"));
+	_CAPTCHA_IS_ENTERPRISE = _function_argument("isEnterprise").toString() === 'true';
   _CAPTCHA_ENTERPRISE_ACTION = _function_argument("enterpriseAction");
 	_CAPTCHA_DATA_S = _function_argument("dataS");
-	_CAPTCHA_INVISIBLE = eval(_function_argument("isInvisible"));
+	_CAPTCHA_INVISIBLE = _function_argument("isInvisible").toString() === 'true';
 	_CAPTCHA_COOKIES = _function_argument("cookies");
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
-	_CAPTCHA_USEPROXY = eval(_function_argument("useProxy"));
+	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
 	_CAPTCHA_PROXY = _function_argument("proxy");
 	_CAPTCHA_PROXYTYPE = _function_argument("proxyType");
 	_CAPTCHA_PROXYLOGIN = _function_argument("proxyLogin");
@@ -558,10 +559,10 @@ function CaptchaCustomByUserTrue_RecaptchaV3(){
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
 	_CAPTCHA_ACTION = _function_argument("pageAction");
 	_CAPTCHA_MIN_SCORE = _function_argument("minScore");
-	_CAPTCHA_IS_ENTERPRISE = eval(_function_argument("isEnterprise"));
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_IS_ENTERPRISE = _function_argument("isEnterprise").toString() === 'true';
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
-	_CAPTCHA_USEPROXY = eval(_function_argument("useProxy"));
+	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
 	_CAPTCHA_PROXY = _function_argument("proxy");
 	_CAPTCHA_PROXYTYPE = _function_argument("proxyType");
 	_CAPTCHA_PROXYLOGIN = _function_argument("proxyLogin");
@@ -581,9 +582,10 @@ function CaptchaCustomByUserTrue_hCaptcha(){
 	_CAPTCHA_SERVER_URL = _function_argument("serverUrl");
 	_CAPTCHA_SITE_URL = _function_argument("siteURL");
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
-	_CAPTCHA_USEPROXY = eval(_function_argument("useProxy"));
+  _CAPTCHA_INVISIBLE = _function_argument("isInvisible").toString() === 'true';
+	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
 	_CAPTCHA_PROXY = _function_argument("proxy");
 	_CAPTCHA_PROXYTYPE = _function_argument("proxyType");
 	_CAPTCHA_PROXYLOGIN = _function_argument("proxyLogin");
@@ -606,10 +608,10 @@ function CaptchaCustomByUserTrue_FunCaptcha(){
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
 	_CAPTCHA_DATA = _function_argument("data");
 	_CAPTCHA_SURL = _function_argument("surl");
-	_CAPTCHA_NOJS = eval(_function_argument("nojs"));
-	_CAPTCHA_REPLACE_SERVICE = eval(_function_argument("replaceService"));
+	_CAPTCHA_NOJS = _function_argument("nojs").toString() === 'true';
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
-	_CAPTCHA_USEPROXY = eval(_function_argument("useProxy"));
+	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
 	_CAPTCHA_PROXY = _function_argument("proxy");
 	_CAPTCHA_PROXYTYPE = _function_argument("proxyType");
 	_CAPTCHA_PROXYLOGIN = _function_argument("proxyLogin");
