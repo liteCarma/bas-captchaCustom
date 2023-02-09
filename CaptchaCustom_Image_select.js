@@ -5,33 +5,19 @@ if (service["original"].length == 0) {
 };
 var serviceKey = GetInputConstructorValue("serviceKey", loader);
 var serverUrl = GetInputConstructorValue("serverUrl", loader);
+var lang = GetInputConstructorValue("lang", loader);
 var replaceService = GetInputConstructorValue("replaceService", loader);
 if (replaceService["original"].length == 0) {
   Invalid(tr("Replace Service") + " " + tr("is empty"));
   return;
 };
 var replaceTo = GetInputConstructorValue("replaceTo", loader);
-var siteKey = GetInputConstructorValue("siteKey", loader);
-if (siteKey["original"].length == 0) {
-  Invalid(tr("Site Key") + " " + tr("is empty"));
+var body = GetInputConstructorValue("body", loader);
+if (body["original"].length == 0) {
+  Invalid(tr("Captcha picture data") + " " + tr("is empty"));
   return;
 };
-var siteURL = GetInputConstructorValue("siteURL", loader);
-if (siteURL["original"].length == 0) {
-  Invalid(tr("Site URL") + " " + tr("is empty"));
-  return;
-};
-
-var isInvisible = GetInputConstructorValue('isInvisible', loader);
-var useProxy = GetInputConstructorValue("useProxy", loader);
-var proxyType = GetInputConstructorValue("proxyType", loader);
-var proxy = GetInputConstructorValue("proxy", loader);
-var proxyLogin = GetInputConstructorValue("proxyLogin", loader);
-var proxyPassword = GetInputConstructorValue("proxyPassword", loader);
-var userAgent = GetInputConstructorValue("userAgent", loader);
-var enterprisePayload = GetInputConstructorValue("enterprisePayload", loader);
 var delayFirstResult = GetInputConstructorValue("delayFirstResult", loader);
-var captchaDomain = GetInputConstructorValue("captchaDomain", loader);
 if (delayFirstResult["original"].length == 0) {
   Invalid(tr("Delay before the first result") + " " + tr("is empty"));
   return;
@@ -43,25 +29,16 @@ if (delayResults["original"].length == 0) {
 };
 var Save = this.$el.find("#Save").val().toUpperCase();
 try {
-  var code = loader.GetAdditionalData() + _.template($("#CaptchaCustomByUserTrue_hCaptcha_code").html())({
+  var code = loader.GetAdditionalData() + _.template($("#CaptchaCustom_Image_code").html())({
     "service": service["updated"],
     "serviceKey": serviceKey["updated"],
     "serverUrl": serverUrl["updated"],
-    "siteKey": siteKey["updated"],
-    "siteURL": siteURL["updated"],
+    "lang": lang["updated"],
+    "body": body["updated"],
     "replaceService": replaceService["updated"],
     "replaceTo": replaceTo["updated"],
-    "isInvisible": isInvisible['updated'],
-    "useProxy": useProxy["updated"],
-    "proxy": proxy["updated"],
-    "proxyType": proxyType["updated"],
-    "proxyLogin": proxyLogin["updated"],
-    "proxyPassword": proxyPassword["updated"],
-    "userAgent": userAgent["updated"],
-    "enterprisePayload": enterprisePayload["updated"],
     "delayFirstResult": delayFirstResult["updated"],
     "delayResults": delayResults["updated"],
-    "captchaDomain": captchaDomain["updated"],
     "variable": "VAR_" + Save
   });
   code = Normalize(code, 0);

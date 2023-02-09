@@ -213,7 +213,7 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 				task["body"] = _CAPTCHA_BODY;
 				break;
 			case "RecaptchaV2":
-				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? (_CAPTCHA_IS_ENTERPRISE ? "RecaptchaV2EnterpriseTask" : "NoCaptchaTask") : (_CAPTCHA_IS_ENTERPRISE ? "RecaptchaV2EnterpriseTaskProxyless" : "NoCaptchaTaskProxyless");
+				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? (_CAPTCHA_IS_ENTERPRISE ? "RecaptchaV2EnterpriseTask" : "RecaptchaV2Task") : (_CAPTCHA_IS_ENTERPRISE ? "RecaptchaV2EnterpriseTaskProxyless" : "RecaptchaV2TaskProxyless");
 				task["websiteKey"] = _CAPTCHA_SITE_KEY;
 				if(!_CAPTCHA_IS_ENTERPRISE && _CAPTCHA_DATA_S){
 					task["recaptchaDataSValue"] = _CAPTCHA_DATA_S;
@@ -240,7 +240,10 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 				task["type"] = (_CAPTCHA_USEPROXY && _CAPTCHA_PROXYHASH["server"]) ? "HCaptchaTask" : "HCaptchaTaskProxyless";
 				task["websiteKey"] = _CAPTCHA_SITE_KEY;
         if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
-          task["enterprisePayload"] = _CAPTCHA_ENTERPRISE_PAYLOAD
+          task["enterprisePayload"] = {
+            rqdata: _CAPTCHA_ENTERPRISE_PAYLOAD,
+            apiEndpoint: _CAPTCHA_DOMAIN
+          }
         }
         task["isInvisible"] = true;
 				break;
@@ -389,6 +392,10 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 				body.add("sitekey", _CAPTCHA_SITE_KEY);
         if (_CAPTCHA_ENTERPRISE_PAYLOAD) {
           body.add("data", _CAPTCHA_ENTERPRISE_PAYLOAD);
+        }
+
+        if (_CAPTCHA_DOMAIN) {
+          body.add("domain", _CAPTCHA_DOMAIN);
         }
         body.add("invisible", Number(_CAPTCHA_INVISIBLE));
 				break;
@@ -594,7 +601,7 @@ function CaptchaCustomByUserTrue_hCaptcha(){
 	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
 	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
   _CAPTCHA_ENTERPRISE_PAYLOAD = _function_argument("enterprisePayload");
-
+  _CAPTCHA_DOMAIN = _function_argument("captchaDomain");
 	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"hCaptcha"})!
 	_result_function()
 
