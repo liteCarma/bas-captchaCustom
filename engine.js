@@ -1,3 +1,4 @@
+
 function CaptchaCustomByUserTrue_ErrorHandler(error, error_text){
     if(error=="16" || error==16){error = error_text};
 	var errors = {};
@@ -339,7 +340,7 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 	})!
 	
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
-    var body = _CAPTCHA_VERSION=="Image" ? got.createData('multipart') : got.createData('urlencode');
+    var body = got.createData('multipart');
     body.add('key', _CAPTCHA_SERVICE_KEY);
     body.add('json', 1);
 
@@ -441,17 +442,11 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 			body.add(_CAPTCHA_SOFTID_TITLE, _CAPTCHA_SOFTID);
 		};
 		
-		_if_else(_CAPTCHA_VERSION=="Image", function(){
-      _call_function(got.post, {
-        url: _CAPTCHA_SERVICE_URL + "/in.php",
-        body: body,
-        contentType: body.contentType
-      })!
-		}, function(){
-      _call_function(got.get, {
-        url: _CAPTCHA_SERVICE_URL + "/in.php?" + body.toString()
-      })!
-		})!
+    _call_function(got.post, {
+      url: _CAPTCHA_SERVICE_URL + "/in.php",
+      body: body,
+      contentType: body.contentType
+    })!
 		
 		var resp = http_client_encoded_content("auto");
 			
