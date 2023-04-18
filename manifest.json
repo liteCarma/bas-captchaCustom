@@ -92,6 +92,21 @@
     },
     {
       "code": [{
+        "file": "CaptchaCustomByUserTrue_AWSCaptcha_code.js",
+        "name": "CaptchaCustomByUserTrue_AWSCaptcha_code"
+      }],
+      "description": {
+        "en": "Solve AWSCaptcha",
+        "ru": "Решить AWSCaptcha"
+      },
+      "interface": "CaptchaCustomByUserTrue_AWSCaptcha_interface.js",
+      "is_element": false,
+      "name": "CaptchaCustomByUserTrue_AWSCaptcha",
+      "select": "CaptchaCustomByUserTrue_AWSCaptcha_select.js",
+      "template": "{{service}} -> {{Save}}"
+    },
+    {
+      "code": [{
         "file": "CaptchaCustomByUserTrue_ReportGood_code.js",
         "name": "CaptchaCustomByUserTrue_ReportGood_code"
       }],
@@ -130,7 +145,8 @@
     "CaptchaCustomByUserTrue_hCaptcha",
     "CaptchaCustomByUserTrue_FunCaptcha",
     "CaptchaCustomByUserTrue_ReportGood",
-    "CaptchaCustomByUserTrue_ReportBad"
+    "CaptchaCustomByUserTrue_ReportBad",
+    "CaptchaCustomByUserTrue_AWSCaptcha"
   ],
   "browser": [],
   "depends": ["got"],
@@ -294,7 +310,7 @@
     }
   },
   "major_version": 3,
-  "minor_version": 1,
+  "minor_version": 2,
   "modules": [],
   "name": "captchaCustomModUserTrue"
 }

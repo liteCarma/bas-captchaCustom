@@ -1,3 +1,2 @@
-/*Dat:eyJzIjoiZ290R1VJR2V0In0*/
  _call_function(CaptchaCustomByUserTrue_hCaptcha,{"service":(<%=service%>),"serviceKey":(<%=serviceKey%>),"serverUrl":(<%=serverUrl%>),"siteKey":(<%=siteKey%>),"siteURL":(<%=siteURL%>),"replaceService":(<%=replaceService%>),"replaceTo":(<%=replaceTo%>),"useProxy":(<%=useProxy%>),"proxy":(<%=proxy%>),"proxyType":(<%=proxyType%>),"proxyLogin":(<%=proxyLogin%>),"proxyPassword":(<%=proxyPassword%>),"isInvisible":(<%=isInvisible%>),"userAgent":(<%=userAgent%>),"enterprisePayload":(<%=enterprisePayload%>),"delayFirstResult":(<%=delayFirstResult%>),"delayResults":(<%=delayResults%>),"captchaDomain":(<%=captchaDomain%>)})!
 <%= variable %> = _result_function()

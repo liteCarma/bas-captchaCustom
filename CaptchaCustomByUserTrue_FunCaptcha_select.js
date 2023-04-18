@@ -23,7 +23,6 @@ if(siteURL["original"].length == 0){
 };
 var surl = GetInputConstructorValue("surl", loader);
 var data = GetInputConstructorValue("data", loader);
-var nojs = GetInputConstructorValue("nojs", loader);
 var useProxy = GetInputConstructorValue("useProxy", loader);
 var proxyType = GetInputConstructorValue("proxyType", loader);
 var proxy = GetInputConstructorValue("proxy", loader);
@@ -45,12 +44,11 @@ try{
     var code = loader.GetAdditionalData() + _.template($("#CaptchaCustomByUserTrue_FunCaptcha_code").html())({
         "service": service["updated"],
         "serviceKey": serviceKey["updated"],
-		"serverUrl": serverUrl["updated"],
+		    "serverUrl": serverUrl["updated"],
         "siteKey": siteKey["updated"],
         "siteURL": siteURL["updated"],
         "surl": surl["updated"],
         "data": data["updated"],
-        "nojs": nojs["updated"],
         "replaceService": replaceService["updated"],
         "replaceTo": replaceTo["updated"],
         "useProxy": useProxy["updated"],
@@ -59,7 +57,7 @@ try{
         "proxyLogin": proxyLogin["updated"],
         "proxyPassword": proxyPassword["updated"],
         "userAgent": userAgent["updated"],
-		"delayFirstResult": delayFirstResult["updated"],
+		    "delayFirstResult": delayFirstResult["updated"],
         "delayResults": delayResults["updated"],
         "variable": "VAR_" + Save
     });

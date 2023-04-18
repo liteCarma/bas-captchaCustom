@@ -383,7 +383,7 @@ function CaptchaCustomByUserTrue_SetService(){
 			_CAPTCHA_SERVICE_URL = "https://rucaptcha.com";
 			_CAPTCHA_SERVICE_NAME = "RuCaptcha";
 			_CAPTCHA_API_VERSION = "rucaptcha";
-			_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3","hCaptcha","FunCaptcha"];
+			_CAPTCHA_SUPPORTED = ["Image","RecaptchaV2","RecaptchaV3","hCaptcha","FunCaptcha", "AWSCaptcha"];
 			_CAPTCHA_SOFTID = 2098;
 			_CAPTCHA_SOFTID_TITLE = "soft_id";
 			break;
@@ -735,9 +735,6 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 				body.add("method", "funcaptcha");
 				body.add("publickey", _CAPTCHA_SITE_KEY);
         body.add("action", 'get');
-				if(_CAPTCHA_NOJS){
-					body.add("nojs", 1);
-				};
 				if(_CAPTCHA_SURL){
 					body.add("surl", _CAPTCHA_SURL);
 				};
@@ -749,6 +746,13 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 						body.add("data[" + key + "]", _CAPTCHA_DATA[key]);
 					});
 				};
+				break;
+      case "AWSCaptcha":
+        body.add("method", "amazon_waf");
+				body.add("sitekey", _CAPTCHA_SITE_KEY);
+        body.add("action", 'get');
+				body.add("iv", _CAPTCHA_IV);
+        body.add("context", _CAPTCHA_DATA);
 				break;
 			default:
 				die(_K=="ru" ? ("Решение " + _CAPTCHA_VERSION + " не поддерживается") : (_CAPTCHA_VERSION + " solution not supported"), true);
@@ -941,7 +945,6 @@ function CaptchaCustomByUserTrue_FunCaptcha(){
 	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
 	_CAPTCHA_DATA = _function_argument("data");
 	_CAPTCHA_SURL = _function_argument("surl");
-	_CAPTCHA_NOJS = _function_argument("nojs").toString() === 'true';
 	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
 	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
 	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
@@ -958,6 +961,31 @@ function CaptchaCustomByUserTrue_FunCaptcha(){
 
 	_function_return(_CAPTCHA_RESPONSE)
 };
+
+function CaptchaCustomByUserTrue_AWSCaptcha(){
+	_CAPTCHA_SERVICE = _function_argument("service");
+	_CAPTCHA_SERVICE_KEY = _function_argument("serviceKey");
+	_CAPTCHA_SITE_URL = _function_argument("siteURL");
+	_CAPTCHA_SITE_KEY = _function_argument("siteKey");
+	_CAPTCHA_DATA = _function_argument("data");
+	_CAPTCHA_IV = _function_argument("iv");
+	_CAPTCHA_REPLACE_SERVICE = _function_argument("replaceService").toString() === 'true';
+	_CAPTCHA_REPLACE_TO = _function_argument("replaceTo");
+	_CAPTCHA_USEPROXY = _function_argument("useProxy").toString() === 'true';
+	_CAPTCHA_PROXY = _function_argument("proxy");
+	_CAPTCHA_PROXYTYPE = _function_argument("proxyType");
+	_CAPTCHA_PROXYLOGIN = _function_argument("proxyLogin");
+	_CAPTCHA_PROXYPASSWORD = _function_argument("proxyPassword");
+	_CAPTCHA_USERAGENT = _function_argument("userAgent");
+	_CAPTCHA_DELAY_FIRST_RESULT = _function_argument("delayFirstResult");
+	_CAPTCHA_DELAY_RESULTS = _function_argument("delayResults");
+
+	_call_function(CaptchaCustomByUserTrue_SolveCaptcha,{"version":"AWSCaptcha"})!
+	_result_function()
+
+	_function_return(_CAPTCHA_RESPONSE)
+};
+
 function CaptchaCustomByUserTrue_ReportGood(){
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){		
 		_switch_http_client_internal();

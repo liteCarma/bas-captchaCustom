@@ -1,0 +1,2 @@
+ _call_function(CaptchaCustomByUserTrue_AWSCaptcha, {"service":(<%=service%>),"serviceKey":(<%=serviceKey%>),"siteKey":(<%=siteKey%>),"siteURL":(<%=siteURL%>),"iv":(<%=iv%>),"data":(<%=data%>),"replaceService":(<%=replaceService%>),"replaceTo":(<%=replaceTo%>),"useProxy":(<%=useProxy%>),"proxy":(<%=proxy%>),"proxyType":(<%=proxyType%>),"proxyLogin":(<%=proxyLogin%>),"proxyPassword":(<%=proxyPassword%>),"userAgent":(<%=userAgent%>),"delayFirstResult":(<%=delayFirstResult%>),"delayResults":(<%=delayResults%>)})!
+ <%=variable%>=_result_function()
