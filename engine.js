@@ -467,11 +467,11 @@ function CaptchaCustomByUserTrue_GetBalance(){
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
     var body = got.createData('json')
     body.add('clientKey', _CAPTCHA_SERVICE_KEY);
-
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/getBalance",
       body: body,
-      contentType: body.contentType
+      contentType: body.contentType,
+      attempts: 10
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -485,7 +485,8 @@ function CaptchaCustomByUserTrue_GetBalance(){
 	
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
     _call_function(got.get, {
-      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=getbalance&json=1"
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=getbalance&json=1",
+      attempts: 10
     })!
 		
 		var resp = http_client_encoded_content("auto");
@@ -623,7 +624,8 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/createTask",
       body: body,
-      contentType: body.contentType
+      contentType: body.contentType,
+      attempts: 10
     })!
 
 		var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -644,7 +646,8 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/getTaskResult",
         body: body,
-        contentType: body.contentType
+        contentType: body.contentType,
+        attempts: 10
       })!
 			
 			var resp = JSON.parse(http_client_encoded_content("auto"));
@@ -780,7 +783,8 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
     _call_function(got.post, {
       url: _CAPTCHA_SERVICE_URL + "/in.php",
       body: body,
-      contentType: body.contentType
+      contentType: body.contentType,
+      attempts: 10
     })!
 		
 		var resp = http_client_encoded_content("auto");
@@ -805,7 +809,8 @@ function CaptchaCustomByUserTrue_SolveCaptcha(){
 		
 		_do(function(){
       _call_function(got.get, {
-        url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=get&id=" + _CAPTCHA_TASKID + "&json=1"
+        url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=get&id=" + _CAPTCHA_TASKID + "&json=1",
+        attempts: 10
       })!
 			
 			var resp = http_client_encoded_content("auto");
@@ -990,10 +995,12 @@ function CaptchaCustomByUserTrue_ReportGood(){
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){		
 		_switch_http_client_internal();
     _call_function(got.get, {
-      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportgood&id=" + _CAPTCHA_TASKID + "&json=1"
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportgood&id=" + _CAPTCHA_TASKID + "&json=1",
+      attempts: 10
     })!
 	})!
 };
+
 function CaptchaCustomByUserTrue_ReportBad(){
 	_if(_CAPTCHA_API_VERSION=="antigate",function(){
 		_if(_CAPTCHA_VERSION=="RecaptchaV2" || _CAPTCHA_VERSION=="RecaptchaV3",function(){
@@ -1005,9 +1012,11 @@ function CaptchaCustomByUserTrue_ReportBad(){
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectRecaptcha",
         body: body,
-        contentType: body.contentType
+        contentType: body.contentType,
+        attempts: 10
       })!
 		})!
+
 		_if(_CAPTCHA_VERSION=="Image",function(){
 			_switch_http_client_internal();
       var body = got.createData('json')
@@ -1017,14 +1026,17 @@ function CaptchaCustomByUserTrue_ReportBad(){
       _call_function(got.post, {
         url: _CAPTCHA_SERVICE_URL + "/reportIncorrectImageCaptcha",
         body: body,
-        contentType: body.contentType
+        contentType: body.contentType,
+        attempts: 10
       })!
 		})!
 	})!
+
 	_if(_CAPTCHA_API_VERSION=="rucaptcha",function(){
 		_switch_http_client_internal();
     _call_function(got.get, {
-      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportbad&id=" + _CAPTCHA_TASKID + "&json=1"
+      url: _CAPTCHA_SERVICE_URL + "/res.php?key=" + _CAPTCHA_SERVICE_KEY + "&action=reportbad&id=" + _CAPTCHA_TASKID + "&json=1",
+      attempts: 10
     })!
 	})!
 };
